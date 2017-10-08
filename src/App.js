@@ -4,6 +4,9 @@ import './App.css'
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import cusTheme from './cusTheme'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin()
 
@@ -14,11 +17,12 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
+        <MuiThemeProvider muiTheme={getMuiTheme(cusTheme)}>
+        <div>
         <AppBar
           title="Title"
           iconClassNameRight="muidocs-icon-navigation-expand-more"
-          onLeftIconButtonTouchTap{() => this.setState({open: !this.state.open})}
+          onLeftIconButtonTouchTap={() => this.setState({open: !this.state.open})}
         />
         <Drawer
           open={this.state.open}
@@ -29,6 +33,7 @@ class App extends Component {
           <MenuItem>Menu Item 2</MenuItem>
         </Drawer>
       </div>
+      </MuiThemeProvider>
     )
   }
 }
