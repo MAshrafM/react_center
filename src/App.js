@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Route, NavLink } from 'react-router-dom'
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
@@ -11,18 +11,29 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin()
 
 class App extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = { open: false }
   }
-  render () {
+
+  handleClose = () => this.setState({ open: false })
+
+  SideBarItem = ({ link, text, isExact }) => {
+    return (
+      <NavLink activeClassName="active" exact={isExact} to={link}>
+        <MenuItem onTouchTap={this.handleClose} primaryText={text} />
+      </NavLink>
+    )
+  }
+  render() {
+    const SideBarItem = this.SideBarItem
     return (
       <BrowserRouter>
         <MuiThemeProvider muiTheme={getMuiTheme(cusTheme)}>
           <div>
             <AppBar
-              title='Title'
-              iconClassNameRight='muidocs-icon-navigation-expand-more'
+              title="Title"
+              iconClassNameRight="muidocs-icon-navigation-expand-more"
               onLeftIconButtonTouchTap={() =>
                 this.setState({ open: !this.state.open })}
             />
@@ -31,70 +42,58 @@ class App extends Component {
               docked={false}
               onRequestChange={open => this.setState({ open })}
             >
-              <MenuItem>
-                <Link to='/'>Home</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to='/logos'>Logos</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to='/posters'>Posters</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to='/letterhead'>Letterhead</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to='/share-a-story'>Share a Story</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to='/service-request-form'>Service Request Form</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to='/tutorial'>Tutorial</Link>
-              </MenuItem>
+              <SideBarItem link="/" text="Home" isExact />
+              <SideBarItem link="/logos" text="Logos" />
+              <SideBarItem link="/posters" text="Posters" />
+              <SideBarItem link="/letterhead" text="Letterhead" />
+              <SideBarItem link="/share-a-story" text="Share a Story" />
+              <SideBarItem
+                link="/service-request-form"
+                text="Service Request Form"
+              />
             </Drawer>
 
-            <Route exact path='/' render={() => <h1>Home View</h1>} />
+            <Route exact path="/" render={() => <h1>Home View</h1>} />
             <Route
               exact
-              path='/logos-posters'
+              path="/logos-posters"
               render={() => <h1>Logos and Posters View</h1>}
             />
-            <Route exact path='/logos' render={() => <h1>Logos View</h1>} />
-            <Route exact path='/posters' render={() => <h1>Posters View</h1>} />
+            <Route exact path="/logos" render={() => <h1>Logos View</h1>} />
+            <Route exact path="/posters" render={() => <h1>Posters View</h1>} />
             <Route
               exact
-              path='/letterhead'
+              path="/letterhead"
               render={() => <h1>Letterhead View</h1>}
             />
             <Route
               exact
-              path='/share-a-story'
+              path="/share-a-story"
               render={() => <h1>Share a Story View</h1>}
             />
             <Route
               exact
-              path='/planning-guide'
+              path="/planning-guide"
               render={() => <h1>Planning Guide View</h1>}
             />
             <Route
               exact
-              path='/services'
+              path="/services"
               render={() => <h1>Services View</h1>}
             />
             <Route
               exact
-              path='/glossary'
+              path="/glossary"
               render={() => <h1>Glossary Posters View</h1>}
             />
             <Route
               exact
-              path='/service-request-form'
+              path="/service-request-form"
               render={() => <h1>Service Request Form View</h1>}
             />
             <Route
               exact
-              path='/tutorial'
+              path="/tutorial"
               render={() => <h1>Tutorial View</h1>}
             />
           </div>
