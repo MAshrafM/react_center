@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
-import MenuItem from 'material-ui/MenuItem'
+import SideBarItem from './SideBarItem'
 
 const links = [
   { isExact: true, linkTo: '/', text: 'Home' },
@@ -42,17 +41,13 @@ class SideNav extends Component {
         >
           {links.map((link, i) => {
             return (
-              <NavLink
-                activeClassName="active"
-                exact={link.isExact}
-                to={link.linkTo}
+              <SideBarItem
+                isExact={link.isExact}
+                linkTo={link.linkTo}
+                primaryText={link.text}
+                handleClose={this.handleClose}
                 key={i}
-              >
-                <MenuItem
-                  onTouchTap={this.handleClose}
-                  primaryText={linkText}
-                />
-              </NavLink>
+              />
             )
           })}
         </Drawer>
