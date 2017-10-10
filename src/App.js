@@ -1,101 +1,48 @@
 import React, { Component } from 'react'
 import './App.css'
-import { BrowserRouter, Route, NavLink } from 'react-router-dom'
-import AppBar from 'material-ui/AppBar'
-import Drawer from 'material-ui/Drawer'
-import MenuItem from 'material-ui/MenuItem'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+/* Material UI */
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import cusTheme from './cusTheme'
-import injectTapEventPlugin from 'react-tap-event-plugin'
+
+import SideNav from './SideNav'
+/* import views */
+import Home from './views/Home'
+import Glossary from './views/Glossary'
+import Letterhead from './views/Letterhead'
+import Logos from './views/Logos'
+import LogosPosters from './views/LogosPosters'
+import Posters from './views/Posters'
+import PlanningGuide from './views/PlanningGuide'
+import Services from './views/Services'
+import ServiceRequest from './views/ServiceRequest'
+import Story from './views/Story'
+import Tutorial from './views/Tutorial'
+
 injectTapEventPlugin()
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { open: false }
-  }
-
-  handleClose = () => this.setState({ open: false })
-
-  SideBarItem = ({ link, text, isExact }) => {
-    return (
-      <NavLink activeClassName="active" exact={isExact} to={link}>
-        <MenuItem onTouchTap={this.handleClose} primaryText={text} />
-      </NavLink>
-    )
-  }
   render() {
-    const SideBarItem = this.SideBarItem
     return (
       <BrowserRouter>
         <MuiThemeProvider muiTheme={getMuiTheme(cusTheme)}>
           <div>
-            <AppBar
-              title="Title"
-              iconClassNameRight="muidocs-icon-navigation-expand-more"
-              onLeftIconButtonTouchTap={() =>
-                this.setState({ open: !this.state.open })}
-            />
-            <Drawer
-              open={this.state.open}
-              docked={false}
-              onRequestChange={open => this.setState({ open })}
-            >
-              <SideBarItem link="/" text="Home" isExact />
-              <SideBarItem link="/logos" text="Logos" />
-              <SideBarItem link="/posters" text="Posters" />
-              <SideBarItem link="/letterhead" text="Letterhead" />
-              <SideBarItem link="/share-a-story" text="Share a Story" />
-              <SideBarItem
-                link="/service-request-form"
-                text="Service Request Form"
-              />
-            </Drawer>
-
-            <Route exact path="/" render={() => <h1>Home View</h1>} />
-            <Route
-              exact
-              path="/logos-posters"
-              render={() => <h1>Logos and Posters View</h1>}
-            />
-            <Route exact path="/logos" render={() => <h1>Logos View</h1>} />
-            <Route exact path="/posters" render={() => <h1>Posters View</h1>} />
-            <Route
-              exact
-              path="/letterhead"
-              render={() => <h1>Letterhead View</h1>}
-            />
-            <Route
-              exact
-              path="/share-a-story"
-              render={() => <h1>Share a Story View</h1>}
-            />
-            <Route
-              exact
-              path="/planning-guide"
-              render={() => <h1>Planning Guide View</h1>}
-            />
-            <Route
-              exact
-              path="/services"
-              render={() => <h1>Services View</h1>}
-            />
-            <Route
-              exact
-              path="/glossary"
-              render={() => <h1>Glossary Posters View</h1>}
-            />
-            <Route
-              exact
-              path="/service-request-form"
-              render={() => <h1>Service Request Form View</h1>}
-            />
-            <Route
-              exact
-              path="/tutorial"
-              render={() => <h1>Tutorial View</h1>}
-            />
+            <SideNav />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/logos-posters" component={LogosPosters} />
+              <Route path="/logos" component={Logos} />
+              <Route path="/posters" component={Posters} />
+              <Route path="/letterhead" component={Letterhead} />
+              <Route path="/share-a-story" component={Story} />
+              <Route path="/planning-guide" component={PlanningGuide} />
+              <Route path="/services" component={Services} />
+              <Route path="/glossary" component={Glossary} />
+              <Route path="/service-request-form" component={ServiceRequest} />
+              <Route path="/tutorial" component={Tutorial} />
+            </Switch>
           </div>
         </MuiThemeProvider>
       </BrowserRouter>
