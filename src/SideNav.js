@@ -29,7 +29,7 @@ class SideNav extends Component {
     return (
       <div>
         <AppBar
-          title="Title"
+          title="RCenter"
           iconClassNameRight="muidocs-icon-navigation-expand-more"
           onLeftIconButtonTouchTap={() =>
             this.setState({ open: !this.state.open })}
