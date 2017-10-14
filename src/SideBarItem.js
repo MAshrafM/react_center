@@ -6,8 +6,7 @@ class SideBarItem extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      open: false,
-      click: false
+      open: false
     }
   }
 
