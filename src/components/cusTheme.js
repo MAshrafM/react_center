@@ -1,11 +1,19 @@
 import {
-  purple700, purple900, purple500,
-  cyan500, cyan700,
+  purple700,
+  purple900,
+  purple500,
+  cyan500,
+  cyan700,
   pinkA200,
-  grey100, grey300, grey400, grey500,
-  white, darkBlack, fullBlack
+  grey100,
+  grey300,
+  grey400,
+  grey500,
+  white,
+  darkBlack,
+  fullBlack
 } from 'material-ui/styles/colors'
-import {fade} from 'material-ui/utils/colorManipulator'
+import { fade } from 'material-ui/utils/colorManipulator'
 import spacing from 'material-ui/styles/spacing'
 
 export default {
