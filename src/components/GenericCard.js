@@ -19,7 +19,7 @@ export class GenericCard extends Component {
       overlay,
       cardTitle,
       cardSubtitle,
-      action,
+      actions,
       children
     } = this.props
 
