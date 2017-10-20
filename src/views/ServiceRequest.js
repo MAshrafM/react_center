@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import TextField from 'material-ui/TextField'
 import DatePicker from 'material-ui/DatePicker'
 import Checkbox from 'material-ui/Checkbox'
-import RaisedButton from '../MaterializeRaisedButton'
+import RaisedButton from '../components/MaterializeRaisedButton'
 import { Link } from 'react-router-dom'
 import '../styles/materialize-input.css'
 
@@ -120,40 +120,40 @@ class ServiceRequest extends Component {
   }
   render() {
     const fileValue = this.state.fileInput || 'Select a file to upload'
-    const SingleLineField = (label, index) => {
-      ;<div className="col s12 m6" key={index}>
+    const SingleLineField = (label, index) => (
+      <div className="col s12 m6" key={index}>
         <TextField
           floatingLabelText={label}
           name={this.formatLabelToProperty(label)}
-          value={this.state[this.formatLabelToProperty(label)]}
           onClick={this.handleInputChange}
           fullWidth
         />
       </div>
-    }
-    const MultiLineField = (label, index) => {
-      ;<div className="col s12 m6" key={index}>
+    )
+
+    const MultiLineField = (label, index) => (
+      <div className="col s12 m6" key={index}>
         <TextField
           floatingLabelText={label}
           name={this.formatLabelToProperty(label)}
-          value={this.state[this.formatLabelToProperty(label)]}
           onClick={this.handleInputChange}
           multiLine
           rows={2}
           fullWidth
         />
       </div>
-    }
+    )
 
-    const CheckboxField = (label, index) => {
-      ;<Checkbox
+    const CheckboxField = (label, index) => (
+      <Checkbox
         label={label}
         name={this.formatLabelToProperty(label)}
         key={index}
         onClick={this.handleInputChange}
         style={styles.checkbox}
       />
-    }
+    )
+
     return (
       <div className="container">
         <div className="row">
