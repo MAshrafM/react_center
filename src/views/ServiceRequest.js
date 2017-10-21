@@ -208,7 +208,11 @@ class ServiceRequest extends Component {
               label={
                 <span>
                   I have read the {' '}
-                  <Link to="/planning-guide" style={{ fontWeight: 500 }}>
+                  <Link
+                    to="/planning-guide"
+                    style={{ fontWeight: 500 }}
+                    target="_blank"
+                  >
                     Planning Guide
                   </Link>
                 </span>
