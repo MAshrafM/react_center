@@ -1,35 +1,46 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import '../styles/video.css'
 
 class Tutorial extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      topCoord: null
+    }
   }
+
+  componentDidMount() {
+    const thisElement = ReactDOM.findDOMNode(this)
+    const top = thisElement.getBoundingClientRect().top
+    this.setState({ topCoord: top })
+  }
+
   render() {
     return (
       <div className="container">
-        <div className="row">
-          <div className="col s12">
-            <p style={{ marginBottom: '20px' }}>
-              If you have any problems using the RCenter, please contact JW at{' '}
-              <a href="#">support</a> or <a href="#">911</a>.
-            </p>
-          </div>
-        </div>
-        <div className="row">
+        <div className="row" style={{ marginBottom: 0 }}>
           <div
             className="col s12 valign-wrapper"
-            style={{ minHeight: 'calc(100vh - 64px)' }}
+            style={{
+              minHeight: `calc(100vh - ${this.state.topCoord || '64'}px)`
+            }}
           >
-            <div className="video-container z-depth-1">
-              <iframe
-                src="#"
-                width="853"
-                height="480"
-                frameborder="0"
-                allowfullscreen="allowfullscreen"
-                title="Tutorial Video"
-              />
+            <div style={{ width: '100%' }}>
+              <div className="video-container z-depth-1">
+                <iframe
+                  src="#"
+                  width="853"
+                  height="480"
+                  frameborder="0"
+                  allowfullscreen="allowfullscreen"
+                  title="Tutorial Video"
+                />
+              </div>
+              <p style={{ marginTop: '20px' }}>
+                If you have any problems using the RCenter, please contact JW at{' '}
+                <a href="#">support</a> or <a href="#">911</a>.
+              </p>
             </div>
           </div>
         </div>
