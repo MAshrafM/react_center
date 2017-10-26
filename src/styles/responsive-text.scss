@@ -3,7 +3,7 @@
 .flow-text{
   font-weight: 300;
   $i: 0;
-  @while $i <= intervals {
+  @while $i <= $intervals {
     @media only screen and (min-width: 360 + ($i * $intervals - size)){
       font-size: 1.2rem * (1 + (0.2 * $i))
     }
