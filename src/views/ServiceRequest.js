@@ -83,9 +83,11 @@ class ServiceRequest extends Component {
       {}
     )
     this.state = {
-      fileInput: null
+      form: {
+        fileInput: null
+      }
     }
-    Object.assign(this.state, stringProps, checkboxProps)
+    Object.assign(this.state.form, stringProps, checkboxProps)
 
     this.handleInputChange = this.handleInputChange.bind(this)
   }
@@ -102,30 +104,27 @@ class ServiceRequest extends Component {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
-
-    this.setState({
-      [name]: value
-    })
+    const form = Object.assign({}, this.state.form)
+    form[name] = value
+    this.setState({ form })
   }
 
   handleFilePath = event => {
     const target = event.target
     const files = Array.from(target.files)
-    if (files.length === 0) {
-      this.setState({
-        fileInput: null
-      })
-    } else {
-      const fileNames = files.map(f => f.name).join(', ')
-      this.setState({
-        fileInput: fileNames
-      })
+    let fileNames = null
+    if (file.length > 0) {
+      fileNames = files.map(f => f.name).join(', ')
     }
+    const form = Object.assign({}, this.state.form)
+    form.fileInput = fileNames
+    this.setState({ form })
   }
 
   handleFormData = () => {
     const data = new FormData()
-    for (const [key, val] of Object.entries(this.state)) data.append(key, val)
+    for (const [key, val] of Object.entries(this.state.form))
+      data.append(key, val)
     for (const file of this.uploadInput.files) data.append('file', file)
 
     fetch(UPLOAD_URL, {
@@ -135,13 +134,14 @@ class ServiceRequest extends Component {
   }
 
   render() {
-    const fileValue = this.state.fileInput || 'Select a file to upload'
+    const fileValue = this.state.form.fileInput || 'Select a file to upload'
     const SingleLineField = (label, index) => (
       <div className="col s12 m6" key={index}>
         <TextField
           floatingLabelText={label}
           name={this.formatLabelToProperty(label)}
           onClick={this.handleInputChange}
+          value={this.state.form[this.formatLabelToProperty(label)]}
           fullWidth
         />
       </div>
@@ -152,6 +152,7 @@ class ServiceRequest extends Component {
         <TextField
           floatingLabelText={label}
           name={this.formatLabelToProperty(label)}
+          value={this.state.form[this.formatLabelToProperty(label)]}
           onClick={this.handleInputChange}
           multiLine
           rows={2}
@@ -165,7 +166,7 @@ class ServiceRequest extends Component {
         label={label}
         name={this.formatLabelToProperty(label)}
         key={index}
-        onClick={this.handleInputChange}
+        onCheck={this.handleInputChange}
         style={styles.checkbox}
       />
     )
