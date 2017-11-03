@@ -55,7 +55,20 @@ const wrikeMkFolder = name =>
       Authorization: `bearer ${process.env.WRIKE_TOKEN}`,
       'Content-Type': 'application/x-www-form-urlencoded'
     }
-  }).then(res => res.text())
+  }).then(res => res.json())
+
+const wrikeAddAttachment = (id, file, name, type) =>
+  fetch(`https://www.wrike.com/api/v3/folders/${id}/attachments`, {
+    body: file,
+    method: 'post',
+    headers: {
+      Authorization: `bearer ${process.env.WRIKE_TOKEN}`,
+      'x-requested-with': 'XMLHttpRequest',
+      'x-file-name': name,
+      'content-type': type,
+      'cache-control': 'no-cache'
+    }
+  }).then(res => res.json())
 
 if (!fs.existsSync(UPLOAD_DIR)) {
   console.warn('Creating uploads folder ...')
@@ -86,6 +99,12 @@ app.post('/uploads', function(req, res) {
 
   form.on('file', function(name, file) {
     console.log('Uploaded ' + file.name)
+  })
+
+  const files = []
+
+  form.on('file', function(name, file) {
+    files.push(file)
   })
 
   const fields = {}
@@ -127,7 +146,21 @@ app.post('/uploads', function(req, res) {
     }
 
     wrikeMkFolder('test')
-      .then(status => console.log(status))
+      .then(status => {
+        const folderId = status.data[0].id
+        for (const file of files) {
+          const readStream = fs.createReadStream(file.path)
+          wrikeAddAttachment(
+            folderId,
+            readStream,
+            file.name,
+            file.type
+          ).catch(err => {
+            console.log('Error while reading file for upload to Wrike: ' + err)
+            console.log('Filename: ' + file.path)
+          })
+        }
+      })
       .catch(console.log)
     console.log(queryParmas)
   })
