@@ -41,7 +41,9 @@ export class GenericCard extends Component {
         )}
         {cardTitle && <CardTitle title={cardTitle} subtitle={cardSubtitle} />}
         <CardText>{children}</CardText>
-        {actions && <CardActions>{actions} </CardActions>}
+        {actions && (
+          <CardActions className="card-actions">{actions} </CardActions>
+        )}
       </Card>
     )
   }

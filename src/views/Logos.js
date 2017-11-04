@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Masonry from 'react-masonry-component'
 import { GenericCard } from './../components/GenericCard'
 import FlatButton from 'material-ui/FlatButton'
+import SvgIcon from 'material-ui/SvgIcon'
 import '../styles/logos.scss'
 
 class Logos extends Component {
@@ -24,6 +25,13 @@ class Logos extends Component {
       text: 'Text'
     }
 
+    const DownloadIcon = props => (
+      <SvgIcon {...props}>
+        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+        <path d="M0 0h24v24H0z" fill="none" />
+      </SvgIcon>
+    )
+
     const massonryComp = (
       <Masonry>
         {this.state.data
@@ -35,8 +43,20 @@ class Logos extends Component {
                 mediaImgSrc="http://via.placeholder.com/120x100"
                 actions={
                   <div>
-                    <FlatButton label="JPG" />
-                    <FlatButton label="PSD" />
+                    <FlatButton
+                      label={
+                        <span>
+                          <DownloadIcon color="#ffb41f" />JPG
+                        </span>
+                      }
+                    />
+                    <FlatButton
+                      label={
+                        <span>
+                          <DownloadIcon color="#ffb41f" />PSD
+                        </span>
+                      }
+                    />
                   </div>
                 }
               />
@@ -44,6 +64,7 @@ class Logos extends Component {
           ))}
       </Masonry>
     )
+
     return (
       <div>
         <div className="row">
