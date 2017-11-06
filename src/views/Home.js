@@ -13,7 +13,7 @@ class Home extends Component {
 
   componentDidMount() {
     const thisElement = ReactDOM.findDOMNode(this)
-    const top = thisElement.getBoundingClientReact().top
+    const top = thisElement.getBoundingClientRect().top
     this.setState({ topCoord: top })
   }
   render() {
@@ -39,8 +39,6 @@ class Home extends Component {
               RCenter Custom Apps for every need.
             </GenericCard>
           </div>
-        </div>
-        <div className="row">
           <div className="col s12 m4">
             <GenericCard cardTitle="ERP">
               RCenter Custom ERP systems for every business.

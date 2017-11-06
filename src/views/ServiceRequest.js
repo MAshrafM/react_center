@@ -119,7 +119,7 @@ class ServiceRequest extends Component {
     const target = event.target
     const files = Array.from(target.files)
     let fileNames = null
-    if (file.length > 0) {
+    if (files.length > 0) {
       fileNames = files.map(f => f.name).join(', ')
     }
     const form = Object.assign({}, this.state.form)

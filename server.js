@@ -22,7 +22,7 @@ const ENABLE_SEND_EMAILS =
   process.env.ENABLE_SEND_EMAILS === 'true'
 
 const ENABLE_WRIKE =
-  rocess.env.NODE_ENV === 'production' || process.env.ENABLE_WRIKE === 'true'
+  process.env.NODE_ENV === 'production' || process.env.ENABLE_WRIKE === 'true'
 
 if (ENABLE_SEND_EMAILS) {
   console.info('Sending emails is enabled')
