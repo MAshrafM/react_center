@@ -92,11 +92,15 @@ class Logos extends Component {
               ))}
             </ul>
           </div>
-          <div className="col s12 hide-on-large-only">
+          <div
+            className="col s12 hide-on-large-only"
+            style={{ textAlign: 'center' }}
+          >
             <SelectField
               floatingLabelText="Logo Type"
               value={this.state.activeTab}
               onChange={this.handleChange}
+              style={{ textAlign: 'left' }}
             >
               {Object.keys(tabs).map(tabKey => (
                 <MenuItem value={tabKey} primaryText={tabs[tabKey]} />
