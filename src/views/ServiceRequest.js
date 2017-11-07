@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Helmet } from 'react-helmet'
 import TextField from 'material-ui/TextField'
 import DatePicker from 'material-ui/DatePicker'
 import Checkbox from 'material-ui/Checkbox'
@@ -207,6 +208,9 @@ class ServiceRequest extends Component {
 
     return (
       <div className="container">
+        <Helmet>
+          <title> Service Request | RCenter</title>
+        </Helmet>
         <div className="row">
           <div className="col s12 flow-text">
             <h2>Please use this form to request services.</h2>

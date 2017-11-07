@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Helmet } from 'react-helmet'
 import ReactDOM from 'react-dom'
 import '../styles/video.css'
 
@@ -19,6 +20,9 @@ class Tutorial extends Component {
   render() {
     return (
       <div className="container">
+        <Helmet>
+          <title>Tutorial | RCenter</title>
+        </Helmet>
         <div className="row" style={{ marginBottom: 0 }}>
           <div
             className="col s12 valign-wrapper"

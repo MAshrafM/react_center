@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Helmet } from 'react-helmet'
 import ReactDOM from 'react-dom'
 import { GenericCard } from './../components/GenericCard'
 import '../styles/home.css'
@@ -25,6 +26,9 @@ class Home extends Component {
           minHeight: `calc(100vh - ${this.state.topCoord || '64'}px)`
         }}
       >
+        <Helmet>
+          <title>Home | RCenter</title>
+        </Helmet>
         <div className="row" style={{ display: 'flex', flexWrap: 'wrap' }}>
           <div className="col s12 m4">
             <GenericCard cardTitle="Manuals">Resources Manuals</GenericCard>

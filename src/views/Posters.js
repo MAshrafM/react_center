@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Helmet } from 'react-helmet'
 import { Card, CardTitle, CardText } from 'material-ui/Card'
 
 class Posters extends Component {
@@ -6,6 +7,9 @@ class Posters extends Component {
   render() {
     return (
       <div className="container">
+        <Helmet>
+          <title>Posters | RCenter</title>
+        </Helmet>
         <div className="row">
           <div className="col s12 m6">
             <Card>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Helmet } from 'react-helmet'
 import Masonry from 'react-masonry-component'
 import { GenericCard } from './../components/GenericCard'
 import FlatButton from 'material-ui/FlatButton'
@@ -79,6 +80,9 @@ class Logos extends Component {
 
     return (
       <div>
+        <Helmet>
+          <title>Logos | RCenter</title>
+        </Helmet>
         <div className="row">
           <div className="col s12 hide-on-med-and-down">
             <ul className="tabs">
