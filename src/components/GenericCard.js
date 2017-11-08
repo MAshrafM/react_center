@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Paper from 'material-ui/Paper'
 import { Link } from 'react-router-dom'
+import debounce from 'lodash/debounce'
 
 import {
   Card,
@@ -15,71 +16,77 @@ export class GenericCard extends Component {
   constructor(props) {
     super(props)
     this.state = { depth: 1 }
-    this.onMouseOver = this.onMouseOver.bind(this)
-    this.onMouseOut = this.onMouseOut.bind(this)
   }
 
-  onMouseOver() {
-    this.setState({ depth: 2 })
-  }
-  onMouseOut() {
-    this.setState({ depth: 1 })
-  }
+  onMouseOver = debounce(() => {
+    this.state.depth === 2 || this.setState({ depth: 2 })
+  }, 32)
+  onMouseOut = debounce(() => {
+    this.state.depth === 1 || this.setState({ depth: 1 })
+  }, 32)
 
   render() {
-    const {
-      headerTitle,
-      headerSubtitle,
-      headerAvatar,
-      mediaImgSrc,
-      mediaImgAlt,
-      overlay,
-      cardTitle,
-      cardSubtitle,
+    const { link } = this.props
+    const CardContent = ({
       actions,
+      cardSubtitle,
+      cardTitle,
       children,
       classes,
+      headerAvatar,
+      headerSubtitle,
+      headerTitle,
       hoverable,
-      link
-    } = this.props
-
-    const CardContent = (
-      <Card className={classes} style={{ boxShadow: 'none' }}>
-        {(headerTitle || headerAvatar) && (
-          <CardHeader
-            title={headerTitle}
-            subtitle={headerSubtitle}
-            avatar={headerAvatar}
-          />
-        )}
-        {mediaImgSrc && (
-          <CardMedia className="img-container" overlay={overlay}>
-            <img src={mediaImgSrc} alt={mediaImgAlt} />
-          </CardMedia>
-        )}
-        {cardTitle && <CardTitle title={cardTitle} subtitle={cardSubtitle} />}
-        <CardText style={{ fontSize: '16px' }}>{children}</CardText>
-        {actions && (
-          <CardActions className="card-actions">{actions} </CardActions>
-        )}
-      </Card>
-    )
-    return (
+      mediaImgAlt,
+      mediaImgSrc,
+      overlay,
+      zDepth
+    }) => (
       <Paper
-        zDepth={this.state.depth}
+        zDepth={zDepth}
         onMouseOver={hoverable && this.onMouseOver}
         onMouseOut={hoverable && this.onMouseOut}
+        style={{ height: '100%' }}
       >
-        {link ? (
-          <Link to={link} isExact="true">
-            {' '}
-            {CardContent}{' '}
-          </Link>
-        ) : (
-          CardContent
-        )}
+        <Card className={classes} style={{ boxShadow: 'none' }}>
+          {(headerTitle || headerAvatar) && (
+            <CardHeader
+              title={headerTitle}
+              subtitle={headerSubtitle}
+              avatar={headerAvatar}
+            />
+          )}
+          {mediaImgSrc && (
+            <CardMedia className="img-container" overlay={overlay}>
+              <img src={mediaImgSrc} alt={mediaImgAlt} />
+            </CardMedia>
+          )}
+          {cardTitle && <CardTitle title={cardTitle} subtitle={cardSubtitle} />}
+          <CardText style={{ fontSize: '16px' }}>{children}</CardText>
+          {actions && (
+            <CardActions className="card-actions">{actions} </CardActions>
+          )}
+        </Card>
       </Paper>
     )
+
+    const isInternal = link && link[0] === '/'
+
+    const jsx = link ? (
+      isInternal ? (
+        <Link to={link}>
+          <CardContent {...this.props} zDepth={this.state.depth} />
+        </Link>
+      ) : (
+        <a href={link} target="_blank">
+          <CardContent {...this.props} zDepth={this.state.depth} />
+        </a>
+      )
+    ) : (
+      <CardContent {...this.props} zDepth={this.state.depth} />
+    )
+
+    return jsx
   }
 }
 
