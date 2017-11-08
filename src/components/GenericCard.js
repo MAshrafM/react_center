@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Paper from 'material-ui/Paper'
+import { Link } from 'react-router-dom'
+
 import {
   Card,
   CardHeader,
@@ -37,34 +39,45 @@ export class GenericCard extends Component {
       actions,
       children,
       classes,
-      hoverable
+      hoverable,
+      link
     } = this.props
 
+    const CardContent = (
+      <Card className={classes} style={{ boxShadow: 'none' }}>
+        {(headerTitle || headerAvatar) && (
+          <CardHeader
+            title={headerTitle}
+            subtitle={headerSubtitle}
+            avatar={headerAvatar}
+          />
+        )}
+        {mediaImgSrc && (
+          <CardMedia className="img-container" overlay={overlay}>
+            <img src={mediaImgSrc} alt={mediaImgAlt} />
+          </CardMedia>
+        )}
+        {cardTitle && <CardTitle title={cardTitle} subtitle={cardSubtitle} />}
+        <CardText style={{ fontSize: '16px' }}>{children}</CardText>
+        {actions && (
+          <CardActions className="card-actions">{actions} </CardActions>
+        )}
+      </Card>
+    )
     return (
       <Paper
         zDepth={this.state.depth}
         onMouseOver={hoverable && this.onMouseOver}
         onMouseOut={hoverable && this.onMouseOut}
       >
-        <Card className={classes}>
-          {(headerTitle || headerAvatar) && (
-            <CardHeader
-              title={headerTitle}
-              subtitle={headerSubtitle}
-              avatar={headerAvatar}
-            />
-          )}
-          {mediaImgSrc && (
-            <CardMedia className="img-container" overlay={overlay}>
-              <img src={mediaImgSrc} alt={mediaImgAlt} />
-            </CardMedia>
-          )}
-          {cardTitle && <CardTitle title={cardTitle} subtitle={cardSubtitle} />}
-          <CardText style={{ fontSize: '16px' }}>{children}</CardText>
-          {actions && (
-            <CardActions className="card-actions">{actions} </CardActions>
-          )}
-        </Card>
+        {link ? (
+          <Link to={link} isExact="true">
+            {' '}
+            {CardContent}{' '}
+          </Link>
+        ) : (
+          CardContent
+        )}
       </Paper>
     )
   }
