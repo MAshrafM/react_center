@@ -11,6 +11,8 @@ import cusTheme from '../components/cusTheme'
 
 import SideNav from '../components/SideNav'
 
+import ScrollIntoView from '../components/ScrollIntoView'
+
 /* import views */
 import Home from '../views/Home'
 import Glossary from '../views/Glossary'
@@ -29,24 +31,26 @@ injectTapEventPlugin()
 const Routes = () => {
   return (
     <BrowserRouter>
-      <MuiThemeProvider muiTheme={getMuiTheme(cusTheme)}>
-        <div>
-          <SideNav />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/logos-posters" component={LogosPosters} />
-            <Route path="/logos" component={Logos} />
-            <Route path="/posters" component={Posters} />
-            <Route path="/letterhead" component={Letterhead} />
-            <Route path="/share-a-story" component={Story} />
-            <Route path="/planning-guide" component={PlanningGuide} />
-            <Route path="/services" component={Services} />
-            <Route path="/glossary" component={Glossary} />
-            <Route path="/service-request-form" component={ServiceRequest} />
-            <Route path="/tutorial" component={Tutorial} />
-          </Switch>
-        </div>
-      </MuiThemeProvider>
+      <ScrollIntoView>
+        <MuiThemeProvider muiTheme={getMuiTheme(cusTheme)}>
+          <div>
+            <SideNav />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/logos-posters" component={LogosPosters} />
+              <Route path="/logos" component={Logos} />
+              <Route path="/posters" component={Posters} />
+              <Route path="/letterhead" component={Letterhead} />
+              <Route path="/share-a-story" component={Story} />
+              <Route path="/planning-guide" component={PlanningGuide} />
+              <Route path="/services" component={Services} />
+              <Route path="/glossary" component={Glossary} />
+              <Route path="/service-request-form" component={ServiceRequest} />
+              <Route path="/tutorial" component={Tutorial} />
+            </Switch>
+          </div>
+        </MuiThemeProvider>
+      </ScrollIntoView>
     </BrowserRouter>
   )
 }
