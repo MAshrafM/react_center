@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 import ReactDOM from 'react-dom'
 import { GenericCard } from './../components/GenericCard'
+import { genericCardData } from '../data/genericCardData'
 import '../styles/home.css'
 
 class Home extends Component {
@@ -30,35 +31,15 @@ class Home extends Component {
           <title>Home | RCenter</title>
         </Helmet>
         <div className="row" style={{ display: 'flex', flexWrap: 'wrap' }}>
-          <div className="col s12 m4">
-            <GenericCard cardTitle="Manuals">Resources Manuals</GenericCard>
-          </div>
-          <div className="col s12 m4">
-            <GenericCard cardTitle="Logos and Designs">
-              RCenter Logos and Design.
-            </GenericCard>
-          </div>
-          <div className="col s12 m4">
-            <GenericCard cardTitle="Applications">
-              RCenter Custom Apps for every need.
-            </GenericCard>
-          </div>
-          <div className="col s12 m4">
-            <GenericCard cardTitle="ERP">
-              RCenter Custom ERP systems for every business.
-            </GenericCard>
-          </div>
-          <div className="col s12 m4">
-            <GenericCard cardTitle="Service Request Form">
-              Let us know what you need and we will get started on it as soon as
-              we can.
-            </GenericCard>
-          </div>
-          <div className="col s12 m4">
-            <GenericCard cardTitle="Testimonials">
-              Meet our clients.
-            </GenericCard>
-          </div>
+          {genericCardData.map((card, key) => {
+            return (
+              <div key={key} className="col s12 m4 flex-div">
+                <GenericCard cardTitle={card.title}>
+                  {card.description}
+                </GenericCard>
+              </div>
+            )
+          })}
         </div>
       </div>
     )
