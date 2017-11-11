@@ -7,7 +7,7 @@ import '../styles/planning-guide.css'
 import {
   headerTitles,
   planningGuideData,
-  serviceData,
+  servicesData,
   styles
 } from '../data/planningGuideServicesData'
 
@@ -123,7 +123,7 @@ class PlanningGuide extends Component {
                 Rcenter provides many services to help you complete your
                 marketing and communication projects.
               </p>
-              {serviceData.map((service, key) => {
+              {servicesData.map((service, key) => {
                 return (
                   <dl key={key}>
                     <dt>{service.title}</dt>

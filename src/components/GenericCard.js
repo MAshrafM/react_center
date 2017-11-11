@@ -26,7 +26,7 @@ export class GenericCard extends Component {
   }, 32)
 
   render() {
-    const { link } = this.props
+    const { link, className } = this.props
     const CardContent = ({
       actions,
       cardSubtitle,
@@ -42,32 +42,31 @@ export class GenericCard extends Component {
       overlay,
       zDepth
     }) => (
-      <Paper
-        zDepth={zDepth}
-        onMouseOver={hoverable && this.onMouseOver}
-        onMouseOut={hoverable && this.onMouseOut}
-        style={{ height: '100%' }}
-      >
-        <Card className={classes} style={{ boxShadow: 'none' }}>
-          {(headerTitle || headerAvatar) && (
-            <CardHeader
-              title={headerTitle}
-              subtitle={headerSubtitle}
-              avatar={headerAvatar}
-            />
-          )}
-          {mediaImgSrc && (
-            <CardMedia className="img-container" overlay={overlay}>
-              <img src={mediaImgSrc} alt={mediaImgAlt} />
-            </CardMedia>
-          )}
-          {cardTitle && <CardTitle title={cardTitle} subtitle={cardSubtitle} />}
-          <CardText style={{ fontSize: '16px' }}>{children}</CardText>
-          {actions && (
-            <CardActions className="card-actions">{actions} </CardActions>
-          )}
-        </Card>
-      </Paper>
+      <div className={className || 'fix-height'}>
+        <Paper zDepth={zDepth} style={{ height: '100%' }}>
+          <Card className={classes} style={{ boxShadow: 'none' }}>
+            {(headerTitle || headerAvatar) && (
+              <CardHeader
+                title={headerTitle}
+                subtitle={headerSubtitle}
+                avatar={headerAvatar}
+              />
+            )}
+            {mediaImgSrc && (
+              <CardMedia className="img-container" overlay={overlay}>
+                <img src={mediaImgSrc} alt={mediaImgAlt} />
+              </CardMedia>
+            )}
+            {cardTitle && (
+              <CardTitle title={cardTitle} subtitle={cardSubtitle} />
+            )}
+            <CardText style={{ fontSize: '16px' }}>{children}</CardText>
+            {actions && (
+              <CardActions className="card-actions">{actions} </CardActions>
+            )}
+          </Card>
+        </Paper>
+      </div>
     )
 
     const isInternal = link && link[0] === '/'

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import { Helmet } from 'react-helmet'
 import ReactDOM from 'react-dom'
 import { GenericCard } from './../components/GenericCard'
@@ -12,14 +13,15 @@ class Posters extends Component {
   }
 
   componentDidMount() {
-    const thisElement = ReactDOMNode(this)
-    const top = thisElement.getBoundingClientRect().top
-    this.setState({ topCoord: top })
+    this.setState({
+      topCoord: this.refs.pageContainer.offsetTop
+    })
   }
 
   render() {
     return (
       <div
+        ref="pageContainer"
         className="container valign-wrapper"
         style={{
           marginBottom: 0,

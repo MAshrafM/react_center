@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 import ReactDOM from 'react-dom'
-import { GenericCard } from './../components/GenericCard'
+import { GenericCard } from '../components/GenericCard'
 import { genericCardData } from '../data/genericCardData'
 import '../styles/home.css'
 
@@ -14,13 +14,14 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    const thisElement = ReactDOM.findDOMNode(this)
-    const top = thisElement.getBoundingClientRect().top
-    this.setState({ topCoord: top })
+    this.setState({
+      topCoord: this.refs.homepageContainer.offsetTop
+    })
   }
   render() {
     return (
       <div
+        ref="homepageContainer"
         className="container valign-wrapper"
         style={{
           marginBottom: 0,
