@@ -1,7 +1,5 @@
 import {
   purple700,
-  purple900,
-  purple500,
   cyan500,
   cyan700,
   pinkA200,

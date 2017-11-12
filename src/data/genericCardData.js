@@ -35,5 +35,23 @@ export default [
     description: 'Official RCenter Powerpoint template.',
     link: 'https://www.canva.com/',
     hoverable: true
+  },
+  {
+    title: 'Posters',
+    description: 'Resources for creating posters.',
+    link: '/posters',
+    hoverable: true
+  },
+  {
+    title: 'Glossary',
+    description: 'Common RCenter terms and definitions.',
+    link: '/glossary',
+    hoverable: true
+  },
+  {
+    title: 'Tutorial',
+    description: 'Video guide of the RCenter.',
+    link: '/tutorial',
+    hoverable: true
   }
 ]

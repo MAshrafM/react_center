@@ -25,8 +25,7 @@ export class GenericCard extends Component {
       headerTitle,
       mediaImgAlt,
       mediaImgSrc,
-      overlay,
-      zDepth
+      overlay
     }) => (
       <div className={className || 'fix-height'}>
         <Paper zDepth={zDepth} style={{ height: '100%' }}>
