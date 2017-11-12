@@ -30,7 +30,11 @@ class Home extends Component {
           {genericCardData.map((card, key) => {
             return (
               <div key={key} className="col s12 m4 flex-div">
-                <GenericCard cardTitle={card.title}>
+                <GenericCard
+                  cardTitle={card.title}
+                  link={card.link}
+                  className={card.hoverable ? 'hoverable' : ''}
+                >
                   {card.description}
                 </GenericCard>
               </div>
