@@ -2,12 +2,7 @@ import React, { Component } from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
 
 class MaterializeRaisedButton extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      hovered: false
-    }
-  }
+  state = { hovered: false }
 
   render() {
     const overlayStyle = {

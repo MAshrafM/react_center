@@ -5,12 +5,7 @@ import ReactDOM from 'react-dom'
 import { GenericCard } from './../components/GenericCard'
 
 class Posters extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      topCoord: null
-    }
-  }
+  state = { topCoord: null }
 
   componentDidMount() {
     this.setState({

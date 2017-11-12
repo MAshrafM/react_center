@@ -2,16 +2,11 @@ import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 import ReactDOM from 'react-dom'
 import { GenericCard } from '../components/GenericCard'
-import { genericCardData } from '../data/genericCardData'
+import genericCardData from '../data/genericCardData'
 import '../styles/home.css'
 
 class Home extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      topCoord: null
-    }
-  }
+  state = { topCoord: null }
 
   componentDidMount() {
     this.setState({

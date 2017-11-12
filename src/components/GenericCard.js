@@ -13,10 +13,7 @@ import {
 } from 'material-ui/Card'
 
 export class GenericCard extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { depth: 1 }
-  }
+  state = { depth: 1 }
 
   onMouseOver = debounce(() => {
     this.state.depth === 2 || this.setState({ depth: 2 })

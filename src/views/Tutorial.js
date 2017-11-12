@@ -4,12 +4,7 @@ import ReactDOM from 'react-dom'
 import '../styles/video.css'
 
 class Tutorial extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      topCoord: null
-    }
-  }
+  state = { topCoord: null }
 
   componentDidMount() {
     const thisElement = ReactDOM.findDOMNode(this)

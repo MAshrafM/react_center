@@ -1,6 +1,6 @@
 import React from 'react'
 import LetterheadCard from '../components/LetterheadCard'
-import { letterheadData } from '../data/letterheadData'
+import letterheadData from '../data/letterheadData'
 import { Helmet } from 'react-helmet'
 
 const Letterhead = () => {

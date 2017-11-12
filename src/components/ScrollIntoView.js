@@ -4,12 +4,16 @@ import { withRouter } from 'react-router'
 class ScrollIntoView extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
-      window.scrollTo(0, 0)
+      this.component.scrollIntoView()
     }
   }
 
   render() {
-    return <span>{this.props.children}</span>
+    return (
+      <span ref={component => (this.component = component)}>
+        {this.props.children}
+      </span>
+    )
   }
 }
 
