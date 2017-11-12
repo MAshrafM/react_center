@@ -1,6 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { glossaryData } from '../data/glossaryData'
+import glossaryData from '../data/glossaryData'
 
 const Glossary = () => {
   return (

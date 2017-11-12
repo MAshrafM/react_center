@@ -28,7 +28,7 @@ export class GenericCard extends Component {
       overlay
     }) => (
       <div className={className || 'fix-height'}>
-        <Paper zDepth={zDepth} style={{ height: '100%' }}>
+        <Paper style={{ height: '100%' }}>
           <Card className={classes} style={{ boxShadow: 'none' }}>
             {(headerTitle || headerAvatar) && (
               <CardHeader

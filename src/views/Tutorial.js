@@ -38,7 +38,7 @@ class Tutorial extends Component {
               </div>
               <p style={{ marginTop: '20px' }}>
                 If you have any problems using the RCenter, please contact JW at{' '}
-                <a href="#">support</a> or <a href="#">911</a>.
+                <a href="/">support</a> or <a href="/">911</a>.
               </p>
             </div>
           </div>

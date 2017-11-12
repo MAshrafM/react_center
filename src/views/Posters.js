@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import _ from 'lodash'
 import { Helmet } from 'react-helmet'
-import ReactDOM from 'react-dom'
 import { GenericCard } from './../components/GenericCard'
 
 class Posters extends Component {
