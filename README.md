@@ -11,6 +11,6 @@ The project is an React project for a university website. Following the series o
 - Project Management with Wirke
 
 ## Show
-[!View](https://github.com/MAshrafM/react_center/blob/master/show.png)
+![View](https://github.com/MAshrafM/react_center/blob/master/show.png)
  
  
